@@ -17,7 +17,7 @@ def increment(struct, ctx):
 # Connect to broker
 channel = Channel("amqp://guest:guest@localhost:5672")
 
-#########Estudar este bloco!#########
+## Create RPC Server
 provider = ServiceProvider(channel)
 logging = LogInterceptor()
 provider.add_interceptor(logging)
@@ -27,6 +27,6 @@ provider.delegate(
     function=increment,
     request_type=Struct,
     reply_type=Struct)
-####################################
 
-provider.run() ## Process requests
+## Process requests
+provider.run() 
